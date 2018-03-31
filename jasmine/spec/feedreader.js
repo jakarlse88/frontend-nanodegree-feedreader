@@ -85,9 +85,7 @@ $(function() {
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          */
-        beforeEach((done) => {
-            loadFeed(0, () => done());
-        })
+        beforeEach((done) => loadFeed(0, () => done()));
 
         it('should have at least a single entry', (done) => {
             expect($('.feed').children().length).not.toBe(0);
@@ -95,10 +93,30 @@ $(function() {
         });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
-
-        /* TODO: Write a test that ensures when a new feed is loaded
+    /* New Feed Selection */
+    describe('New Feed Selection', () => {
+        /* Test ensures that when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+         */ 
+        let previousContent,
+            newContent;
+
+        /* Draw a sample of text before and after new feed load */
+        beforeEach((done) => {
+            loadFeed(0, () => {
+                previousContent = $('.feed').children('a')[0].textContent;
+                done();
+            });
+            
+            loadFeed(1, () => {
+                newContent = $('.feed').children('a')[0].textContent;
+                done();
+            });
+        });
+
+        it('content should change on feed change', (done) => {
+            expect(previousContent).not.toEqual(newContent);
+            done();
+        });
+    });
 }());
