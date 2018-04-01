@@ -95,19 +95,17 @@ $(function() {
         /* Draw a sample of text before and after new feed load */
         beforeEach((done) => {
             loadFeed(0, () => {
-                previousContent = $('.feed').children('a')[0].textContent;
-                done();
-            });
-            
-            loadFeed(1, () => {
-                newContent = $('.feed').children('a')[0].textContent;
-                done();
+                previousContent = $('.feed').text();
+                
+                loadFeed(1, () => {
+                    newContent = $('.feed').text();
+                    done();
+                });
             });
         });
 
-        it('content should change on feed change', (done) => {
-            expect(previousContent).not.toEqual(newContent);
-            done();
-        });
+        it('content should change on feed change', () => 
+            expect(previousContent).not.toEqual(newContent));
+        
     });
 }());
