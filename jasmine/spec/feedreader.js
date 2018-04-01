@@ -79,9 +79,8 @@ $(function() {
          */
         beforeEach((done) => loadFeed(0, () => done()));
 
-        it('should have at least a single entry', (done) => {
-            expect($('.feed').children().length).not.toBe(0);
-            done();
+        it('should have at least a single entry', () => {
+            expect($('.feed .entry').length).not.toBe(0);
         });
     });
 
