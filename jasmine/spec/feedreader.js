@@ -26,36 +26,28 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
+        /* Test takes a feed and a property 'name' or 'url',
+         * then checks that these are defined and have length >0
+         */ 
+        function testProperty(feed, property) {
+            let propertyName = property === 'name'? feed.name : feed.url;
 
-        /* Loops through each feed in the allFeeds 
-         * object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
-        function testURL(feed) {
-            it('has a non-empty URL defined', () => {
-                expect(feed.url).toBeDefined();
-                expect(feed.url.length).not.toBe(0);
-            });
+            expect(feed.url).toBeDefined();
+            expect(feed.url.length).not.toBe(0);
         }
-             
-        for (let feed of allFeeds) {
-            testURL(feed);
-        }
+        
+        it('have non-empty name values defined', () => {
+            for (let feed of allFeeds) {
+                testProperty(feed, 'name');
+            }
+        });
 
-        /* Loops through each feed in the allFeeds
-         * object and ensures it has a name defined
-         * and that the name is not empty.
-         */
-        function testName(feed) {
-            it('has a non-empty name defined', () => {
-                expect(feed.name).toBeDefined();
-                expect(feed.name.length).not.toBe(0);
-            });
-        }
+        it('have non-empty URL defined', () => {
+            for (let feed of allFeeds) {
+                testProperty(feed, 'url');
+            }        
+        });
 
-        for (let feed of allFeeds) {
-            testName(feed);
-        }
     });
 
 
