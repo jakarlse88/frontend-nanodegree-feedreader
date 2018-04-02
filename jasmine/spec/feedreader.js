@@ -17,7 +17,7 @@ $(function() {
 			let propertyName = property === 'name'? feed.name : feed.url;
 
 			expect(propertyName).toBeDefined();
-			expect(propertyName).not.toBe(0);
+			expect(propertyName).not.toBe('');
 		}
         
 		it('have non-empty name values defined', () => {
